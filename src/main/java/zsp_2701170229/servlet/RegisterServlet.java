@@ -1,15 +1,20 @@
-package cn.od.servlet;
+package zsp_2701170229.servlet;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.od.bean.User;
-import cn.od.dao.UserDao;
+import zsp_2701170229.bean.User;
+import zsp_2701170229.dao.UserDao;
 
+/**
+ * 注册操作
+ */
+@WebServlet("register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 2289146343305887782L;
 	private UserDao userDao=new UserDao();

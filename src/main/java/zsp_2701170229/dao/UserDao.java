@@ -1,4 +1,4 @@
-package cn.od.dao;
+package zsp_2701170229.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.od.bean.User;
+import zsp_2701170229.bean.User;
 
 public class UserDao {
 
@@ -28,7 +28,7 @@ public class UserDao {
 				user = new User();
 				user.setId(rs.getInt(1));
 				user.setUsername(rs.getString(2));
-				user.setPassword(rs.getString(3));
+				user.setPwd(rs.getString(3));
 			}
 
 		} catch (SQLException e) {
@@ -86,7 +86,7 @@ public class UserDao {
 		ResultSet rs = null;
 		try {
 
-			ps = conn.prepareStatement("insert into user values(null,?,?,0,0)");
+			ps = conn.prepareStatement("insert into user values(null,?,?)");
 
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -117,8 +117,7 @@ public class UserDao {
 		User user = null;
 		try {
 
-			ps = conn
-					.prepareStatement("select * from user where username=? and password=?");
+			ps = conn.prepareStatement("select * from user where username=? and pwd=?");
 			ps.setString(1, username);
 			ps.setString(2, password);
 			rs = ps.executeQuery();
@@ -127,7 +126,7 @@ public class UserDao {
 				user = new User();
 				user.setId(rs.getInt(1));
 				user.setUsername(rs.getString(2));
-				user.setPassword(rs.getString(3));
+				user.setPwd(rs.getString(3));
 			}
 
 		} catch (SQLException e) {
@@ -147,41 +146,7 @@ public class UserDao {
 		return user;
 	}
 
-	public List<User> findUsers() {
-		Connection conn = db.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		List<User> userList = new ArrayList<User>();
-		User user;
-		try {
 
-			ps = conn.prepareStatement("select * from user where isadmin = 0");
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				user = new User();
-				user.setId(rs.getInt(1));
-				user.setUsername(rs.getString(2));
-				user.setPassword(rs.getString(3));
-				userList.add(user);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conn != null)
-					conn.close();
-				if (ps != null)
-					ps.close();
-				if (rs != null)
-					rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return userList;
-	}
 
 	public void deleteUserByIds(int[] ids) {
 		if (ids == null || ids.length <= 0) {
@@ -228,8 +193,8 @@ public class UserDao {
 		ResultSet rs = null;
 		try {
 
-			ps = conn.prepareStatement("update user set password = ? where id = ?");
-			ps.setString(1, user.getPassword());
+			ps = conn.prepareStatement("update user set pwd = ? where id = ?");
+			ps.setString(1, user.getPwd());
 			ps.setInt(2, user.getId());
 			ps.execute();
 		} catch (SQLException e) {
@@ -247,28 +212,5 @@ public class UserDao {
 			}
 		}
 	}
-	public void doTopUp(User user) {
-		Connection conn = db.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
 
-			ps = conn.prepareStatement("update user set members = 1 where id = ?");
-			ps.setInt(1, user.getId());
-			ps.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conn != null)
-					conn.close();
-				if (ps != null)
-					ps.close();
-				if (rs != null)
-					rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 }

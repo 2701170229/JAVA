@@ -1,16 +1,20 @@
-package cn.od.servlet;
+package zsp_2701170229.servlet;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.od.bean.User;
-import cn.od.dao.UserDao;
-import cn.od.util.Const;
+import zsp_2701170229.bean.User;
+import zsp_2701170229.dao.UserDao;
 
+/**
+ * 登录操作
+ */
+@WebServlet("login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -8973681097412844963L;
 	private UserDao userDao=new UserDao();
@@ -33,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 			String password=request.getParameter("password");
 			User user=userDao.login(username, password);
 			if(user!=null){
-				request.getSession().setAttribute(Const.SESSION_USER, user);
+				request.getSession().setAttribute("loginUser", user);
 				response.sendRedirect("user");
 			}else{
 				request.setAttribute("msg", "用户名或密码错误！！");

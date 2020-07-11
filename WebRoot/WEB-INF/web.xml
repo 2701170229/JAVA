@@ -10,7 +10,7 @@
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
-		<filter-class>cn.od.filter.EncodingFilter</filter-class>
+		<filter-class>zsp_2701170229.filter.EncodingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
@@ -19,7 +19,7 @@
 
 	<servlet>
 		<servlet-name>userServlet</servlet-name>
-		<servlet-class>cn.od.servlet.UserServlet</servlet-class>
+		<servlet-class>zsp_2701170229.servlet.UserServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>userServlet</servlet-name>
@@ -29,7 +29,7 @@
 
 	<servlet>
 		<servlet-name>RegisterServlet</servlet-name>
-		<servlet-class>cn.od.servlet.RegisterServlet</servlet-class>
+		<servlet-class>zsp_2701170229.servlet.RegisterServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
@@ -37,7 +37,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>cn.od.servlet.LoginServlet</servlet-class>
+		<servlet-class>zsp_2701170229.servlet.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>

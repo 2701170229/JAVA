@@ -1,4 +1,4 @@
-package cn.od.filter;
+package zsp_2701170229.filter;
 
 import java.io.IOException;
 
@@ -9,6 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * 中文过滤器
+ */
 public class EncodingFilter implements Filter{
 
 	@Override

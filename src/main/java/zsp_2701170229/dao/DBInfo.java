@@ -1,4 +1,4 @@
-package cn.od.dao;
+package zsp_2701170229.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +25,8 @@ public class DBInfo {
 		Properties pp = new Properties();
 		try {
 			pp.load(in);
-			url = "jdbc:mysql://localhost:3306/onlinedisk?useUnicode=true&characterEncoding=utf8";
+//			url = "jdbc:mysql://localhost:3306/shopCartDb?useUnicode=true&characterEncoding=utf8";
+			url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8";
 			username = "root";
 			password = "root123";
 			driverClass = "com.mysql.jdbc.Driver";

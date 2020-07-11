@@ -1,17 +1,17 @@
-package cn.od.bean;
-
+package zsp_2701170229.bean;
+//用户对象
 public class User {
 
 	private int id;
 	private String username;//用户名
-	private String password;//密码
+	private String pwd;//密码
 
 
 
-	public User(String username, String password) {
+	public User(String username, String pwd) {
 		super();
 		this.username = username;
-		this.password = password;
+		this.pwd = pwd;
 	}
 	
 	
@@ -37,13 +37,12 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	public String getPassword() {
-		return password;
+
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
-	
-	
 }
