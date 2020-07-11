@@ -31,14 +31,13 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		} else if (action != null && action.equals("login")) {
 			String username = request.getParameter("username").trim();
-			String password = request.getParameter("password");
+			String password = request.getParameter("pwd");
 			User user = userDao.login(username, password);
 			if (user != null) {
 				request.getSession().setAttribute("loginUser", user);
-				response.sendRedirect("user");
+				response.getOutputStream().print(0);
 			} else {
-				request.setAttribute("msg", "用户名或密码错误！！");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				response.getOutputStream().print(1);//用户名或密码错误
 				return;
 			}
 		} else {

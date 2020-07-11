@@ -86,7 +86,7 @@ public class UserDao {
 		ResultSet rs = null;
 		try {
 
-			ps = conn.prepareStatement("insert into user values(null,?,?)");
+			ps = conn.prepareStatement("insert into t_user values(null,?,?)");
 
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -117,7 +117,7 @@ public class UserDao {
 		User user = null;
 		try {
 
-			ps = conn.prepareStatement("select * from user where username=? and pwd=?");
+			ps = conn.prepareStatement("select * from t_user where username=? and pwd=?");
 			ps.setString(1, username);
 			ps.setString(2, password);
 			rs = ps.executeQuery();

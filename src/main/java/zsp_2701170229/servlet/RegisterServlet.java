@@ -28,19 +28,22 @@ public class RegisterServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
-		String username=request.getParameter("username").toString();
-		String password=request.getParameter("password").toString();
-		if(userDao.findByUsername(username)){
-				request.setAttribute("msg", "用户名已存在");
-				request.getRequestDispatcher("/register.jsp").forward(request, response);
-		}
-		else{
-			User user=userDao.addUser(username, password);
-			if(user!=null){
-				request.setAttribute("msg2", "注册成功");
-				request.getRequestDispatcher("/register.jsp").forward(request, response);
+		String action=request.getParameter("action");
+		if(action!=null&&"register".equalsIgnoreCase(action)){//执行注册操作
+			String username=request.getParameter("username");
+			String password=request.getParameter("pwd");
+			if(userDao.findByUsername(username)){
+				response.getOutputStream().print("2");//用户名已存在
 			}
+			else{
+				User user=userDao.addUser(username, password);
+				if(user!=null){
+					response.getOutputStream().print("0");//注册成功
+				}
+			}
+		}else{
+			request.getRequestDispatcher("/register.jsp").forward(request, response);//页面跳转
+			return;
 		}
 	}
 
