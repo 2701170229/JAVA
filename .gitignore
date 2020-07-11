@@ -2,3 +2,9 @@
 *.lib
 *out
 *.class
+*.war
+*.log
+*.DS_Store
+.idea
+.idea/*
+*.iml
