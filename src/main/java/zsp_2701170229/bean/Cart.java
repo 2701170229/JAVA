@@ -1,20 +1,38 @@
 package zsp_2701170229.bean;
 
 /**
- * 商品
+ * 购物车
  */
-public class Goods {
-	private Integer id;//商品id
+public class Cart {
+	private Long id;//商品id
 	private String goodsName;//商品名称
 	private String price ;//商品价格
 	private String picture  ;//商品价格
-	private Integer num  ;//商品数量
+	private Integer num  ;//购买数量
+	private Integer userId  ;//购买人
+	private Integer goodsId  ;//商品id
 
-	public Integer getId() {
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getGoodsId() {
+		return goodsId;
+	}
+
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

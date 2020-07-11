@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>商品列表</title>
+    <title>购物车列表</title>
     <style type="text/css">
         body,table{
             font-size:12px;
@@ -40,25 +40,26 @@
     </style>
 </head>
 <body>
-<div style="padding-left: 5%; font-size: x-large;">商品列表</div>
+<div style="padding-left: 5%; font-size: x-large;">购物车列表</div>
 <table width="90%" class="table">
 
     <tr>
         <th>商品编号</th>
         <th>商品名称</th>
         <th>商品图片</th>
-<%--        <th>商品数量</th>--%>
         <th>商品单价（元）</th>
+        <th>购买数量</th>
         <th>操作</th>
     </tr>
-    <c:forEach items="${goodsList}" var="goods">
+    <c:forEach items="${cartList}" var="cart">
         <tr>
-            <td style="text-align: center">${goods.id}</td>
-            <td style="text-align: center">${goods.goodsName}</td>
-            <td style="text-align: center"><img src="${goods.picture}"/></td>
-            <td style="text-align: center">${goods.price}</td>
+            <td style="text-align: center">${cart.id}</td>
+            <td style="text-align: center">${cart.goodsName}</td>
+            <td style="text-align: center"><img src="${cart.picture}"/></td>
+            <td style="text-align: center">${cart.price}</td>
+            <td style="text-align: center">${cart.num}</td>
             <td style="text-align: center;color: #a94442" >
-                <a onclick="addCart(${goods.id})" href="#">添加购物车</a>
+                <a onclick="delCart(${cart.id})" href="#">移除购物车</a>
             </td>
         </tr>
     </c:forEach>
@@ -69,13 +70,14 @@
     layui.use('layer', function() {
         var $ = layui.jquery, layer = layui.layer;
     });
-    function addCart(id) {
+    //移除购物车
+    function delCart(id) {
         var $ = layui.jquery, layer = layui.layer;
-        layer.confirm('确定添加到购物车？', {
+        layer.confirm('确定移除购物车吗？', {
             btn: ['确定','取消']
         }, function(){
             $.ajax({
-                url:"login?action=login",
+                url:"shopCart?action=delCart",
                 type:'post',
                 data:{username:username,pwd:pwd},
                 success:function(data){

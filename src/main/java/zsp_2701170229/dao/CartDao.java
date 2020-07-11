@@ -1,6 +1,8 @@
 package zsp_2701170229.dao;
 
+import zsp_2701170229.bean.Cart;
 import zsp_2701170229.bean.Goods;
+import zsp_2701170229.bean.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,54 +11,55 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoodsDao {
+public class CartDao {
 
 	private DBInfo db = DBInfo.getInstance();
 
-	//根据id查询商品信息
-	public Goods findGoodsById(int id) {
+	public Cart findCartById(int id,int userId) {
 		Connection conn = db.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Goods goods = null;
+		Cart cart = null;
 		try {
-			ps = conn.prepareStatement("select * from t_goods where id=?");
+			ps = conn.prepareStatement("select * from t_cart where goodsId=? and userId=?");
 			ps.setInt(1, id);
+			ps.setInt(2, userId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				goods = new Goods();
-				goods.setId(rs.getInt(1));
-				goods.setGoodsName(rs.getString("goodsName"));
-				goods.setNum(rs.getInt("num"));
-				goods.setPicture(rs.getString("picture"));
-				goods.setPrice(rs.getString("price"));
+				cart = new Cart();
+				cart.setId(rs.getLong(1));
+				cart.setGoodsName(rs.getString("goodsName"));
+				cart.setNum(rs.getInt("num"));
+				cart.setPicture(rs.getString("picture"));
+				cart.setPrice(rs.getString("price"));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			colseDB(conn,ps,rs);
 		}
-		return goods;
+		return cart;
 	}
 
-	//查询找所有商品列表
-	public List<Goods> getGoodsList() {
+
+	//查询找所有购物车列表
+	public List<Cart> getCartList(User user) {
 		Connection conn = db.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<Goods> list=new ArrayList<>();
+		List<Cart> list=new ArrayList<>();
 		try {
-			ps = conn.prepareStatement("select * from t_goods ");
+			ps = conn.prepareStatement("select * from t_cart where userId=? ");
+			ps.setInt(1, user.getId());
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Goods goods = new Goods();
-				goods.setId(rs.getInt(1));
-				goods.setGoodsName(rs.getString("goodsName"));
-				goods.setNum(rs.getInt("num"));
-				goods.setPicture(rs.getString("picture"));
-				goods.setPrice(rs.getString("price"));
-				list.add(goods);
+				Cart cart = new Cart();
+				cart.setId(rs.getLong(1));
+				cart.setGoodsName(rs.getString("goodsName"));
+				cart.setNum(rs.getInt("num"));
+				cart.setPicture(rs.getString("picture"));
+				cart.setPrice(rs.getString("price"));
+				list.add(cart);
 			}
 
 		} catch (SQLException e) {
@@ -68,18 +71,27 @@ public class GoodsDao {
 	}
 
 
-	public int addUser(String username, String password) {
+	//添加购物车
+	public int addCart(Cart cart) {
 		Connection conn = db.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-
-			ps = conn.prepareStatement("insert into t_user values(null,?,?)");
-
-			ps.setString(1, username);
-			ps.setString(2, password);
-			ps.execute();
-
+			Cart isAdd=findCartById(cart.getGoodsId(),cart.getUserId());
+			if(null!=isAdd){//判断是否添加过购物车
+				ps = conn.prepareStatement("update t_cart set num = ? where id = ?");
+				ps.setInt(1, isAdd.getNum()+1);
+				ps.execute();
+			}else{
+				ps = conn.prepareStatement("insert into t_cart values(null,?,?,?,?,?,?)");
+				ps.setString(1, cart.getGoodsName());
+				ps.setInt(2, cart.getNum());
+				ps.setString(3, cart.getPrice());
+				ps.setString(4, cart.getPicture());
+				ps.setInt(5, cart.getUserId());
+				ps.setInt(6, cart.getGoodsId());
+				ps.execute();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -109,27 +121,17 @@ public class GoodsDao {
 
 
 
-	public void deleteUserByIds(int[] ids) {
-		if (ids == null || ids.length <= 0) {
-			return;
-		}
+	//移除购物车
+	public void delCart(int id) {
 		Connection conn = db.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < ids.length; i++) {
-				if (i == ids.length - 1) {
-					sb.append("?");
-				} else {
-					sb.append("?,");
-				}
-			}
+
 			String in = sb.toString();
-			ps = conn.prepareStatement("delete from user where id in (" + in+ ")");
-			for(int i = 0 ;i<ids.length;i++){
-				ps.setInt(i+1, ids[i]);
-			}
+			ps = conn.prepareStatement("delete from user where id =?");
+			ps.setInt(1,id);
 			ps.execute();
 
 		} catch (SQLException e) {
@@ -144,7 +146,6 @@ public class GoodsDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-
 			ps = conn.prepareStatement("update t_goods set num = ? where id = ?");
 			ps.setInt(1, goods.getNum());
 			ps.setLong(2, goods.getId());
