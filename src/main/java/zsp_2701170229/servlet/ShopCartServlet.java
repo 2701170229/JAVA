@@ -56,9 +56,6 @@ public class ShopCartServlet extends HttpServlet {
 			request.getRequestDispatcher("cartList.jsp").forward(request, response);
 			return;
 		}
-
-
-
 	}
 
 

@@ -128,12 +128,10 @@ public class CartDao {
 		ResultSet rs = null;
 		try {
 			StringBuffer sb = new StringBuffer();
-
 			String in = sb.toString();
-			ps = conn.prepareStatement("delete from user where id =?");
+			ps = conn.prepareStatement("delete from t_cart where id =?");
 			ps.setInt(1,id);
 			ps.execute();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

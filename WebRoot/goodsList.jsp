@@ -39,7 +39,7 @@
     </style>
 </head>
 <body>
-<div style="padding-left: 5%; font-size: x-large;">商品列表</div>
+<div style="padding-left: 5%; font-size: x-large;">购物车列表<div style="float: right;padding-right: 5%"><a href="shopCart">点击进入购物车列表</a></div></div>
 <table width="90%" class="table">
 
     <tr>
