@@ -46,11 +46,11 @@ public class UserDao {
 		return user;
 	}
 
-	public boolean findByUsername(String username) {
+	public User findByUsername(String username) {
 		Connection conn = db.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-
+		User user = null;
 		try {
 
 			ps = conn.prepareStatement("select * from t_user where username=?");
@@ -58,7 +58,10 @@ public class UserDao {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				return true;
+				user = new User();
+				user.setId(rs.getInt(1));
+				user.setUsername(rs.getString(2));
+				user.setPwd(rs.getString(3));
 			}
 
 		} catch (SQLException e) {
@@ -75,7 +78,7 @@ public class UserDao {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return user;
 	}
 
 	public User addUser(String username, String password) {
