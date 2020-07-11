@@ -81,6 +81,7 @@ public class CartDao {
 			if(null!=isAdd){//判断是否添加过购物车
 				ps = conn.prepareStatement("update t_cart set num = ? where id = ?");
 				ps.setInt(1, isAdd.getNum()+1);
+				ps.setLong(2, isAdd.getId());
 				ps.execute();
 			}else{
 				ps = conn.prepareStatement("insert into t_cart values(null,?,?,?,?,?,?)");

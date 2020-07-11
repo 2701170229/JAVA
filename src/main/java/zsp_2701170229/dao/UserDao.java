@@ -20,7 +20,7 @@ public class UserDao {
 		User user = null;
 		try {
 
-			ps = conn.prepareStatement("select * from user where id=?");
+			ps = conn.prepareStatement("select * from t_user where id=?");
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
@@ -55,7 +55,7 @@ public class UserDao {
 
 		try {
 
-			ps = conn.prepareStatement("select * from user where username=?");
+			ps = conn.prepareStatement("select * from t_user where username=?");
 			ps.setString(1, username);
 			rs = ps.executeQuery();
 
@@ -165,7 +165,7 @@ public class UserDao {
 				}
 			}
 			String in = sb.toString();
-			ps = conn.prepareStatement("delete from user where id in (" + in+ ")");
+			ps = conn.prepareStatement("delete from t_user where id in (" + in+ ")");
 			for(int i = 0 ;i<ids.length;i++){
 				ps.setInt(i+1, ids[i]);
 			}
@@ -193,7 +193,7 @@ public class UserDao {
 		ResultSet rs = null;
 		try {
 
-			ps = conn.prepareStatement("update user set pwd = ? where id = ?");
+			ps = conn.prepareStatement("update t_user set pwd = ? where id = ?");
 			ps.setString(1, user.getPwd());
 			ps.setInt(2, user.getId());
 			ps.execute();
