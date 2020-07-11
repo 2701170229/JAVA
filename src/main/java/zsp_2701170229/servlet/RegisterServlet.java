@@ -14,7 +14,7 @@ import zsp_2701170229.dao.UserDao;
 /**
  * 注册操作
  */
-@WebServlet("register")
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 2289146343305887782L;
 	private UserDao userDao=new UserDao();

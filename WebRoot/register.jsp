@@ -73,8 +73,8 @@
 	</div>
 </body>
 <script >
-    layui.use('layer', function() { //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+    layui.use('layer', function() {
+        var $ = layui.jquery, layer = layui.layer;
         var msg='${msg2}';
         if(null!=msg&&""!=msg&&"注册成功"==msg){
             $("#msg").css("display","none");

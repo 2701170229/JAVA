@@ -14,14 +14,11 @@ import zsp_2701170229.dao.UserDao;
 /**
  * 登录操作
  */
-@WebServlet("login")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = -8973681097412844963L;
-	private UserDao userDao=new UserDao();
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private UserDao userDao = new UserDao();
 
+	public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		doPost(request, response);
 	}
 
@@ -29,25 +26,28 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		if(action != null && action.equals("logout")){
+		if (action != null && action.equals("logout")) {
 			request.getSession().invalidate();
 			response.sendRedirect("login.jsp");
-		}else{
-			String username=request.getParameter("username").trim();
-			String password=request.getParameter("password");
-			User user=userDao.login(username, password);
-			if(user!=null){
+		} else if (action != null && action.equals("login")) {
+			String username = request.getParameter("username").trim();
+			String password = request.getParameter("password");
+			User user = userDao.login(username, password);
+			if (user != null) {
 				request.getSession().setAttribute("loginUser", user);
 				response.sendRedirect("user");
-			}else{
+			} else {
 				request.setAttribute("msg", "用户名或密码错误！！");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return;
 			}
+		} else {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
 		}
-		
-			
+
+
 	}
 
-	
 
 }
