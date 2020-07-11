@@ -1,9 +1,7 @@
 package zsp_2701170229.servlet;
 
 import zsp_2701170229.bean.Goods;
-import zsp_2701170229.bean.User;
 import zsp_2701170229.dao.GoodsDao;
-import zsp_2701170229.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

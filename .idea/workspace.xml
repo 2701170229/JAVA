@@ -7,13 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="920fa74a-7a60-46e7-9409-7b749674c5cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebRoot/settleList.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/bean/SettleInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/dao/SettleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/SettleServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebRoot/cartList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebRoot/cartList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zsp_2701170229/dao/CartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/dao/CartDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zsp_2701170229/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zsp_2701170229/filter/EncodingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/filter/EncodingFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/GoodsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/GoodsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/RegisterServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +211,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594436773887</updated>
       <workItem from="1594436776914" duration="2312000" />
-      <workItem from="1594439101864" duration="14280000" />
+      <workItem from="1594439101864" duration="14540000" />
     </task>
     <task id="LOCAL-00001" summary="代码调整，新建商品对象">
       <created>1594438206132</created>
@@ -270,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594454827865</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="新增购物车结算逻辑">
+      <created>1594460060935</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1594460060935</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +291,8 @@
     <MESSAGE value="添加购物车" />
     <MESSAGE value="优化添加购物车操作，修复没有登录的情况下添加购物车" />
     <MESSAGE value="新增除购物车逻辑代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增除购物车逻辑代码" />
+    <MESSAGE value="新增购物车结算逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增购物车结算逻辑" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1468" y="195" key="#Project_Structure" timestamp="1594438498155">
@@ -316,10 +323,10 @@
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
     <state x="-1293" y="318" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594437346479" />
-    <state x="-1448" y="147" key="CommitChangelistDialog2" timestamp="1594454825924">
+    <state x="-1448" y="147" key="CommitChangelistDialog2" timestamp="1594460058588">
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
-    <state x="-1448" y="147" key="CommitChangelistDialog2/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594454825924" />
+    <state x="-1448" y="147" key="CommitChangelistDialog2/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594460058588" />
     <state width="721" height="582" key="DebuggerActiveHint" timestamp="1594459774464">
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
@@ -400,10 +407,10 @@
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
     <state x="-1608" y="104" key="SettingsEditor/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594438326715" />
-    <state x="-1468" y="288" key="Vcs.Push.Dialog.v2" timestamp="1594454829356">
+    <state x="-1468" y="288" key="Vcs.Push.Dialog.v2" timestamp="1594460092246">
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
-    <state x="-1468" y="288" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594454829356" />
+    <state x="-1468" y="288" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594460092246" />
     <state x="-1506" y="295" width="1092" height="745" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1594446334954">
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
@@ -412,21 +419,5 @@
       <screen x="-1920" y="104" width="1920" height="1040" />
     </state>
     <state x="-1381" y="109" width="840" height="1034" key="search.everywhere.popup/0.0.2560.1400/-1920.104.1920.1040@-1920.104.1920.1040" timestamp="1594451075134" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/zsp_2701170229/servlet/ShopCartServlet.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/zsp_2701170229/dao/CartDao.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

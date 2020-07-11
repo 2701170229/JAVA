@@ -1,15 +1,14 @@
 package zsp_2701170229.servlet;
 
-import java.io.IOException;
+import zsp_2701170229.bean.User;
+import zsp_2701170229.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import zsp_2701170229.bean.User;
-import zsp_2701170229.dao.UserDao;
+import java.io.IOException;
 
 /**
  * 登录操作

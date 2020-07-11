@@ -1,13 +1,11 @@
 package zsp_2701170229.dao;
 
+import zsp_2701170229.bean.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import zsp_2701170229.bean.User;
 
 public class UserDao {
 
