@@ -18,10 +18,43 @@ c标签引入方式：
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 ```
  根据jdbc直连技术，编写数据库操作工具类，方便存储数据，代码如下：
-![](WebRoot/static/img/数据库对象.png)  
+```
+public class DBUtils {
+	String url = null;			//连接地址
+	String username = null;		//数据库名
+	String password = null;		//数据库密码
+	String driverClass = null;	//连接驱动
+	private static DBUtils db = new DBUtils();
+	/**构建数据库连接参数*/
+	private DBUtils() {
+		try {
+			url = "jdbc:mysql://localhost:3306/shopCartDb?useUnicode=true&characterEncoding=utf8";
+			username = "root";
+			password = "root123";
+			driverClass = "com.mysql.jdbc.Driver";
+			Class.forName(driverClass);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**构建数据库连接对象*/
+	public Connection getConnection(){
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+	public static DBUtils getInstance(){
+		return db;
+	}
+}
+```
 
 
-3.项目内容:
+3.项目功能:
 -----
 1.  注册
 2.  登录
@@ -32,7 +65,19 @@ c标签引入方式：
 7.  购物车数量修改
 8.  购物车结算
 
-4.项目总结:
+4.工作内容：
+---
+```
+本项目采用mysql数据库进行储存数据，所以优先搭建项目所需数据库结构，此项目有用户表，商品表，购物车表，结算表等信息。
+利用搭建好的jsp+servlet框架提供http请求及响应视图能力，展示项目所需各个jsp页面。根据响应显示注册页面进行注册操作。
+根据注册所填写的帐号和密码进行系统登录，如忘记密码，可根据邮件动态验证码形式进行密码找回，密码采用腾讯QQ服务提供的SMTP服务器
+进行验证码收发操作，系统进入后展示商品列表，利用c标签将db入库的数据进行动态渲染，el表达式进行数据取值展示，添加购物车利用ajax请求
+进行添加购物车、移除购物车的技术实现，根据所添加的购物车列表数据，可更改购物车的数量进行结算，将购物车页面数据进行复选框勾选模式。
+可进行多个商品一起结算，利用js技术筛选出具体哪些商品进行勾选，根据勾选商品的数量及商品单价进行最终价格结算。从而完成一系列的购物车
+技术实现
+```
+
+5.项目总结:
 -----
 1. jsp+servlet组合框架开发，条理清晰的mvc框架
 2. 了解c标签进行数据渲染及多方面的强大渲染能力，可以更合理动态展示复杂的数据结构
