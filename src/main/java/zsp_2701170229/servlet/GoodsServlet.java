@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 商品列表
  */
-@WebServlet("/goods")
+@WebServlet("/goodsList")
 public class GoodsServlet extends HttpServlet {
 	private GoodsDao goodsDao = new GoodsDao();
 

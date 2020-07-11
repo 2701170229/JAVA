@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -75,14 +74,18 @@
             btn: ['确定','取消']
         }, function(){
             $.ajax({
-                url:"login?action=login",
+                url:"shopCart?action=addCart",
                 type:'post',
-                data:{username:username,pwd:pwd},
+                data:{goodsId:id},
                 success:function(data){
                     if(data==0){
-                        window.location.href="goodsList";
+                        alert("添加成功");
+                        window.location.href="shopCart";
+                    }else if(data==-1){
+                        alert("添加失败，请先登录");
+                        window.location.href="login";
                     }else{
-                        alert("登录失败，账号或者密码错误");
+                        alert("添加失败，系统异常");
                     }
                 }
             });

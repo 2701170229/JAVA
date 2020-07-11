@@ -30,7 +30,7 @@ public class ShopCartServlet extends HttpServlet {
 		String goodsId=request.getParameter("goodsId");
 		User user=(User)request.getSession().getAttribute("loginUser");
 		if(user==null){
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.getOutputStream().print(-1);//没有登录
 			return;
 		}
 		//添加购物车
