@@ -12,6 +12,7 @@
         密&nbsp;&nbsp;&nbsp; 码：<input id="pwd" required="required"><br>
         <input id="login"   type="button" value="登录" style="color: #00aced" onclick="login();">
         <input id="register"   type="button" value="去注册" style="color: indianred" onclick="register();">
+        <input     type="button" value="找回密码" style="color: cadetblue" onclick="findPwd();">
     </fieldset>
 
 </div>
@@ -54,6 +55,10 @@
     //注册跳转
     function register() {
         window.location.href="register";
+    }
+
+    function findPwd() {
+        window.location.href="login?action=findPwd";
     }
 </script>
 </html>

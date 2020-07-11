@@ -31,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
 		if(action!=null&&"register".equalsIgnoreCase(action)){//执行注册操作
 			String username=request.getParameter("username");
 			String password=request.getParameter("pwd");
-			if(userDao.findByUsername(username)){
+			if(userDao.findByUsername(username)!=null){
 				response.getOutputStream().print("2");//用户名已存在
 			}
 			else{

@@ -26,8 +26,7 @@ public class LoginServlet extends HttpServlet {
 	}
 
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action != null && action.equals("logout")) {
 			request.getSession().invalidate();
@@ -44,10 +43,13 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 		} else if (action != null && action.equals("findPwd")) {//找回密码第一步，发送验证码
+			request.getRequestDispatcher("findPwd.jsp").forward(request, response);
+			return;
+		}else if (action != null && action.equals("doFindPwd")) {//找回密码第一步，发送验证码
 			String username = request.getParameter("username").trim();
 			String email = request.getParameter("email").trim();
 			User result=userDao.findByUsername(username);
-			if(result!=null){
+			if(result==null){
 				response.getOutputStream().print(-1);//用户不存在
 			}else{
 				int authCode=RandomUtil.getIntRandom(4);//验证码生成
@@ -58,6 +60,9 @@ public class LoginServlet extends HttpServlet {
 				EmailUtils.sendEmail(emailModel);
 				response.getOutputStream().print(0);//邮件发送成功
 			}
+		}else if (action != null && action.equals("checkCodePage")) {//跳转验证邮箱页面
+			request.getRequestDispatcher("checkCode.jsp").forward(request, response);
+			return;
 		} else if (action != null && action.equals("checkCode")) {//效验验证码
 			String username = request.getParameter("username").trim();
 			String newPwd = request.getParameter("newPwd").trim();
