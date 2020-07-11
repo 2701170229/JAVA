@@ -20,7 +20,7 @@ c标签引入方式：
  根据jdbc直连技术，编写数据库操作工具类，方便存储数据，代码如下：
 ```
 public class DBUtils {
-	String url = null;			//连接地址
+	String url = null;		//连接地址
 	String username = null;		//数据库名
 	String password = null;		//数据库密码
 	String driverClass = null;	//连接驱动
