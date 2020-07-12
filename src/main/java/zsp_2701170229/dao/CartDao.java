@@ -3,6 +3,7 @@ package zsp_2701170229.dao;
 import zsp_2701170229.bean.Cart;
 import zsp_2701170229.bean.Goods;
 import zsp_2701170229.bean.User;
+import zsp_2701170229.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class CartDao {
 
-	private DBInfo db = DBInfo.getInstance();
+	private DBUtils db = DBUtils.getInstance();
 
 	public Cart findCartById(int id,int userId) {
 		Connection conn = db.getConnection();
@@ -84,7 +85,7 @@ public class CartDao {
 				ps.setLong(2, isAdd.getId());
 				ps.execute();
 			}else{
-				ps = conn.prepareStatement("insert into t_cart values(null,?,?,?,?,?,?)");
+				ps = conn.prepareStatement("insert into t_cart(id,goodsName,num,price,picture,userId,goodsId) values(null,?,?,?,?,?,?)");
 				ps.setString(1, cart.getGoodsName());
 				ps.setInt(2, cart.getNum());
 				ps.setString(3, cart.getPrice());

@@ -1,6 +1,7 @@
 package zsp_2701170229.dao;
 
 import zsp_2701170229.bean.Goods;
+import zsp_2701170229.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class GoodsDao {
 
-	private DBInfo db = DBInfo.getInstance();
+	private DBUtils db = DBUtils.getInstance();
 
 	//根据id查询商品信息
 	public Goods findGoodsById(int id) {
@@ -27,7 +28,7 @@ public class GoodsDao {
 				goods = new Goods();
 				goods.setId(rs.getInt(1));
 				goods.setGoodsName(rs.getString("goodsName"));
-				goods.setNum(rs.getInt("num"));
+//				goods.setNum(rs.getInt("num"));
 				goods.setPicture(rs.getString("picture"));
 				goods.setPrice(rs.getString("price"));
 			}
@@ -53,7 +54,7 @@ public class GoodsDao {
 				Goods goods = new Goods();
 				goods.setId(rs.getInt(1));
 				goods.setGoodsName(rs.getString("goodsName"));
-				goods.setNum(rs.getInt("num"));
+//				goods.setNum(rs.getInt("num"));
 				goods.setPicture(rs.getString("picture"));
 				goods.setPrice(rs.getString("price"));
 				list.add(goods);

@@ -27,7 +27,7 @@ public class EmailUtils {
 
 		 try{
 			 Properties props = new Properties();
-			 emailModel.setText("找回密码");
+			 emailModel.setTitle("找回密码");
 			 // 开启debug调试
 			 props.setProperty("mail.debug", "true");
 			 // 发送服务器需要身份验证

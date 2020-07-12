@@ -1,6 +1,7 @@
 package zsp_2701170229.dao;
 
 import zsp_2701170229.bean.User;
+import zsp_2701170229.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 
 public class UserDao {
 
-	private DBInfo db = DBInfo.getInstance();
+	private DBUtils db = DBUtils.getInstance();
 
 	public User findUserById(int id) {
 		Connection conn = db.getConnection();

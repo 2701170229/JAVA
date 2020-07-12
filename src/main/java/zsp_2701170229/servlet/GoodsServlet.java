@@ -26,8 +26,6 @@ public class GoodsServlet extends HttpServlet {
 		request.setAttribute("goodsList",goodsList);
 		request.getRequestDispatcher("goodsList.jsp").forward(request, response);
 		return;
-
-
 	}
 
 

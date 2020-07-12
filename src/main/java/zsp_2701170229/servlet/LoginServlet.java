@@ -42,10 +42,10 @@ public class LoginServlet extends HttpServlet {
 				response.getOutputStream().print(1);//用户名或密码错误
 				return;
 			}
-		} else if (action != null && action.equals("findPwd")) {//找回密码第一步，发送验证码
+		} else if (action != null && action.equals("findPwd")) {//跳转到找回密码页面
 			request.getRequestDispatcher("findPwd.jsp").forward(request, response);
 			return;
-		}else if (action != null && action.equals("doFindPwd")) {//找回密码第一步，发送验证码
+		}else if (action != null && action.equals("sendCode")) {//发送验证码
 			String username = request.getParameter("username").trim();
 			String email = request.getParameter("email").trim();
 			User result=userDao.findByUsername(username);
@@ -61,20 +61,27 @@ public class LoginServlet extends HttpServlet {
 				response.getOutputStream().print(0);//邮件发送成功
 			}
 		}else if (action != null && action.equals("checkCodePage")) {//跳转验证邮箱页面
+			String username=request.getParameter("username");
+			request.setAttribute("username",username);
 			request.getRequestDispatcher("checkCode.jsp").forward(request, response);
 			return;
 		} else if (action != null && action.equals("checkCode")) {//效验验证码
 			String username = request.getParameter("username").trim();
 			String newPwd = request.getParameter("newPwd").trim();
 			String authCode = request.getParameter("authCode").trim();
-			String sessionCode=(String)request.getSession().getAttribute("sessionCode");
-			User user=userDao.findByUsername(username);
-			if(sessionCode!=null&&authCode!=null&&sessionCode==authCode){
-				user.setPwd(newPwd);
-				userDao.update(user);
-				response.getOutputStream().print(0);
+			if(request.getSession().getAttribute("sessionCode")==null){
+				response.getOutputStream().print(-2);//验证码已经过期
+				return;
 			}else{
-				response.getOutputStream().print(-1);
+				String sessionCode=String.valueOf(request.getSession().getAttribute("sessionCode"));
+				User user=userDao.findByUsername(username);
+				if(sessionCode!=null&&authCode!=null&&sessionCode.equals(authCode)){
+					user.setPwd(newPwd);
+					userDao.update(user);
+					response.getOutputStream().print(0);
+				}else{
+					response.getOutputStream().print(-1);
+				}
 			}
 		} else {
 			request.getRequestDispatcher("login.jsp").forward(request, response);

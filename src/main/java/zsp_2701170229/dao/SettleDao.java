@@ -1,6 +1,7 @@
 package zsp_2701170229.dao;
 
 import zsp_2701170229.bean.SettleInfo;
+import zsp_2701170229.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class SettleDao {
 
-	private DBInfo db = DBInfo.getInstance();
+	private DBUtils db = DBUtils.getInstance();
 
 	//获取所有结算信息
 	public List<SettleInfo> getSettleList(int userId) {
@@ -47,7 +48,7 @@ public class SettleDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = conn.prepareStatement("insert into t_settle values(null,?,?,?,?,?)");
+			ps = conn.prepareStatement("insert into t_settle(id,price,createTime,userId,goodsIds,Num) values(null,?,?,?,?,?)");
 			ps.setString(1, settleInfo.getPrice());
 			ps.setString(2, settleInfo.getCreateTime());
 			ps.setInt(3, settleInfo.getUserId());

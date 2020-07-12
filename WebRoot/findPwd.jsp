@@ -34,13 +34,16 @@
             return;
         } else{
             $.ajax({
-                url:"login?action=doFindPwd",
+                url:"login?action=sendCode",
                 type:'post',
                 data:{username:username,email:email},
                 success:function(data){
                     if(data==0){
                         alert("动态验证码发送成功");
-                        window.location.href="login?action=checkCodePage";
+                        window.location.href="login?action=checkCodePage&username="+username;
+                    }else  if(data==-1){
+                        alert("用户"+username+"不存在,请确认你所要找回的用户");
+                        return;
                     }else{
                         alert("动态验证码发送失败，请稍后重试");
                     }
