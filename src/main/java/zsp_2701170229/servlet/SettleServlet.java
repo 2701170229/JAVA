@@ -62,9 +62,4 @@ public class SettleServlet extends HttpServlet {
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return simpleDateFormat.format(new Date());
 	}
-
-	public static void main(String[] args) {
-		System.out.println(getNow());
-	}
-
 }

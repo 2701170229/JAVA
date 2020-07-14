@@ -28,5 +28,4 @@ public class GoodsServlet extends HttpServlet {
 		return;
 	}
 
-
 }

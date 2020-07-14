@@ -57,6 +57,4 @@ public class ShopCartServlet extends HttpServlet {
 			return;
 		}
 	}
-
-
 }
